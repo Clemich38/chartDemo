@@ -10,8 +10,9 @@ declare var Chart: any;
 
 export class ChartComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() labels: string[];
+  @Input() xLabels: string[];
   @Input() data: number[];
+  @Input() title: string;
 
   private el: ElementRef;
   private ctx: any;
@@ -26,7 +27,7 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.data && this.labels) {
+    if (this.data && this.xLabels) {
       this._create();
     }
   }
@@ -44,7 +45,7 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
 
     let line = this._constructLineChart(this.data);
     line.data.datasets[0].data = this.data;
-    line.data.labels = this.labels;
+    line.data.labels = this.xLabels;
 
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }
@@ -55,7 +56,7 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
       data: {
         labels: [],
         datasets: [{
-          label: 'temp.',
+          label: this.title,
           data: [],
           borderColor: "rgba(75,192,192,1)",
           backgroundColor: '#e3f2fd',
@@ -67,7 +68,7 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
           yAxes: [{
             ticks: {
               max: Math.max.apply(Math, datas) + 1,
-              min: Math.min.apply(Math, datas) - 1
+              min: Math.min.apply(Math, datas)
             },
             gridLines: {
               display: true

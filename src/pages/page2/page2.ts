@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
-import {ChartComponent} from '../../components/chartComponent';
 
 @Component({
   selector: 'page-page2',
@@ -9,17 +7,17 @@ import {ChartComponent} from '../../components/chartComponent';
 })
 export class Page2 {
 
-  public temp: number[];
-  public hours: string[];
+  public yValues: number[];
+  public xValues: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    this.temp = [];
-    this.hours = [];
+    this.yValues = [];
+    this.xValues = [];
 
-    for (let i = 0; i < 10; i++) {
-      this.temp.push(i);
-      this.hours.push(i + 'h');
+    for (let i = 0; i < 20; i++) {
+      this.yValues.push(Math.floor(Math.random() * 20));
+      this.xValues.push(i + '');
     }
 
   }

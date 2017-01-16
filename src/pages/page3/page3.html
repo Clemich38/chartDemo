@@ -1,14 +1,16 @@
+
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Line Chart</ion-title>
+    <ion-title>Pie Chart</ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  
-  <line-chart class="chart-div" title = "Title" [data] = "yValues" [xLabels] = "xValues"></line-chart>
+
+  <pie-chart class="chart-div" [colors] = "colors" [data] = "data" [labels] = "labels"></pie-chart>
 
 </ion-content>

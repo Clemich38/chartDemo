@@ -7,15 +7,19 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
+import { Page3 } from '../pages/page3/page3';
 
 import {ChartComp} from '../components/ChartComp';
+import {ChartPieComp} from '../components/ChartPieComp';
 
 @NgModule({
   declarations: [
     MyApp,
     Page1,
     Page2,
-    ChartComp
+    Page3,
+    ChartComp,
+    ChartPieComp
   ],
   imports: [
     // ChartsModule,
@@ -25,7 +29,8 @@ import {ChartComp} from '../components/ChartComp';
   entryComponents: [
     MyApp,
     Page1,
-    Page2
+    Page2,
+    Page3
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
