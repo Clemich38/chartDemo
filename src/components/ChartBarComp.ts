@@ -13,6 +13,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
   @Input() labels: string[];
   @Input() data: number[];
   @Input() colors: string[];
+  @Input() horizontal: boolean;
 
   private el: ElementRef;
   private ctx: any;
@@ -79,8 +80,9 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
   }
 
   private _constructLineChart(datas: number[]) {
+    let type = this.horizontal? 'horizontalBar' : 'bar';
     return {
-      type: 'bar',
+      type: type,
       data: {
         labels: [],
         datasets: [{
