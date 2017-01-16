@@ -9,10 +9,12 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { Page3 } from '../pages/page3/page3';
 import { Page4 } from '../pages/page4/page4';
+import { Page5 } from '../pages/page5/page5';
 
 import {ChartComp} from '../components/ChartComp';
 import {ChartPieComp} from '../components/ChartPieComp';
 import {ChartDoughnutComp} from '../components/ChartDoughnutComp';
+import {ChartBarComp} from '../components/ChartBarComp';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import {ChartDoughnutComp} from '../components/ChartDoughnutComp';
     Page2,
     Page3,
     Page4,
+    Page5,
     ChartComp,
     ChartPieComp,
-    ChartDoughnutComp
+    ChartDoughnutComp,
+    ChartBarComp
   ],
   imports: [
     // ChartsModule,
@@ -35,7 +39,8 @@ import {ChartDoughnutComp} from '../components/ChartDoughnutComp';
     Page1,
     Page2,
     Page3,
-    Page4
+    Page4,
+    Page5
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
