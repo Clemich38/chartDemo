@@ -7,17 +7,25 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Page2 {
 
-  public yValues: number[];
+  public data: number[];
+  public datas: Array<{data: number[]}>;
   public xValues: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    this.yValues = [];
+    this.datas = [];
     this.xValues = [];
 
-    for (let i = 0; i < 20; i++) {
-      this.yValues.push(Math.floor(Math.random() * 20));
-      this.xValues.push(i + '');
+    for (let i = 0; i < 5; i++) 
+    {
+      this.data = [];
+      this.xValues = [];
+      for (let j = 0; j < 10; j++)
+      {
+        this.data.push(Math.floor(Math.random() * 20));
+        this.xValues.push(j + '');
+      }
+      this.datas.push({data: this.data});
     }
 
   }

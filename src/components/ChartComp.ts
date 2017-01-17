@@ -11,15 +11,36 @@ declare var Chart: any;
 export class ChartComp implements OnChanges, OnInit, OnDestroy {
 
   @Input() xLabels: string[];
-  @Input() data: number[];
+  @Input() datas: Array<{data: number[]}>;
   @Input() title: string;
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
+  private colorTab: string[];
+
   public constructor(el: ElementRef) {
     this.el = el;
+
+    this.colorTab = [
+              "#F44336",
+              "#3F51B5",
+              "#4CAF50",
+              "#FF9800",
+              "#009688",
+              "#795548",
+              "#FFEB3B",
+              "#03A9F4",
+              "#E91E63",
+              "#607D8B",
+              "#9C27B0",
+              "#CDDC39",
+              "#FFC107",
+              "#00BCD4",
+              "#FF5722",
+              "#9E9E9E"
+          ];
   }
 
   public ngOnInit() {
@@ -27,7 +48,7 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.data && this.xLabels) {
+    if (this.datas && this.xLabels) {
       this._create();
     }
   }
@@ -43,33 +64,36 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
-    let line = this._constructLineChart(this.data);
-    line.data.datasets[0].data = this.data;
+    let line = this._constructLineChart(this.datas[0].data);
+
+    for(let i in this.datas)
+    {
+      line.data.datasets.push({label: this.title,
+                               data: this.datas[i].data,
+                               borderColor: this.colorTab[i],
+                               backgroundColor: this.colorTab[i],
+                               fill: false
+                              });
+    }
     line.data.labels = this.xLabels;
 
     this.chart = new Chart(this.el.nativeElement.children[0], line)
-  }
+  }       
 
   private _constructLineChart(datas: number[]) {
     return {
       type: 'line',
       data: {
         labels: [],
-        datasets: [{
-          label: this.title,
-          data: [],
-          borderColor: "rgba(75,192,192,1)",
-          backgroundColor: '#e3f2fd',
-          borderWidth: 1
-        }]
+        datasets: []
       },
       options: {
         scales: {
           yAxes: [{
-            ticks: {
-              max: Math.max.apply(Math, datas) + 1,
-              min: Math.min.apply(Math, datas)
-            },
+            // ticks: {
+            //   max: Math.max.apply(Math, datas),
+            //   min: Math.min.apply(Math, datas)
+            // },
             gridLines: {
               display: true
             }
