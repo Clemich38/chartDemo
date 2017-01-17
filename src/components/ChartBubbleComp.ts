@@ -10,20 +10,33 @@ declare var Chart: any;
 
 export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() xLabels: string[];
   @Input() datas: Array<{data: number[]}>;
-  @Input() title: string;
+  @Input() title: string[];
+  @Input() colors: string[];
+  @Input() yMin: number;
+  @Input() yMax: number;
+  @Input() xMin: number;
+  @Input() xMax: number;
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
-  private colorTab: string[];
+  private m_colors: string[];
+  private m_yMin: number;
+  private m_yMax: number;
+  private m_xMin: number;
+  private m_xMax: number;
 
   public constructor(el: ElementRef) {
     this.el = el;
 
-    this.colorTab = [
+    this.m_yMin = 0;
+    this.m_yMax = 0;
+    this.m_xMin = 0;
+    this.m_xMax = 0;
+
+    this.m_colors = [
               "#F44336",
               "#3F51B5",
               "#4CAF50",
@@ -48,7 +61,7 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.datas && this.xLabels) {
+    if (this.datas && this.title) {
       this._create();
     }
   }
@@ -64,19 +77,30 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
+    // Custom color
+    if (this.colors)
+      this.m_colors = this.colors;
+    if (this.yMin)
+      this.m_yMin = this.yMin;
+    if (this.yMax)
+      this.m_yMax = this.yMax;
+    if (this.xMin)
+      this.m_xMin = this.xMin;
+    if (this.xMax)
+      this.m_xMax = this.xMax;
+
     let line = this._constructChart(this.datas[0].data);
 
     for(let i in this.datas)
     {
-      line.data.datasets.push({label: this.title,
+      line.data.datasets.push({label: this.title[i],
                                data: this.datas[i].data,
-                               borderColor: this.colorTab[i],
-                               backgroundColor: this.colorTab[i],
-                               hoverBackgroundColor: this.colorTab[i],
+                               borderColor: this.m_colors[i],
+                               backgroundColor: this.m_colors[i],
+                               hoverBackgroundColor: this.m_colors[i],
                                fill: true
                               });
     }
-    line.data.labels = this.xLabels;
 
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }       
@@ -85,15 +109,14 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
     return {
       type: 'bubble',
       data: {
-        labels: [],
         datasets: []
       },
       options: {
         scales: {
           yAxes: [{
             ticks: {
-              // max: Math.max.apply(Math, datas),
-              min: 0
+              suggestedMax: this.m_yMax,
+              suggestedMin: this.m_yMin
             },
             gridLines: {
               display: true
@@ -101,8 +124,8 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
           }],
           xAxes: [{
             ticks: {
-              // max: Math.max.apply(Math, datas),
-              min: 0
+              suggestedMax: this.m_xMax,
+              suggestedMin: this.m_xMin
             },
             gridLines: {
               display: false

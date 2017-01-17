@@ -24,6 +24,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
   public constructor(el: ElementRef) {
     this.el = el;
 
+    // Default colors
     this.colorTab = [
               "#F44336",
               "#3F51B5",
