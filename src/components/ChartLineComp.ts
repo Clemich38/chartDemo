@@ -64,7 +64,7 @@ export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
-    let line = this._constructLineChart(this.datas[0].data);
+    let line = this._constructChart(this.datas[0].data);
 
     for(let i in this.datas)
     {
@@ -80,7 +80,7 @@ export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }       
 
-  private _constructLineChart(datas: number[]) {
+  private _constructChart(datas: number[]) {
     return {
       type: 'line',
       data: {
@@ -90,10 +90,10 @@ export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
       options: {
         scales: {
           yAxes: [{
-            // ticks: {
-            //   max: Math.max.apply(Math, datas),
-            //   min: Math.min.apply(Math, datas)
-            // },
+            ticks: {
+              // max: Math.max.apply(Math, datas),
+              min: 0
+            },
             gridLines: {
               display: true
             }

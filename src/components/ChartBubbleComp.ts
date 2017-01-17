@@ -4,11 +4,11 @@ declare var Chart: any;
 
 
 @Component({
-  selector: 'radar-chart',
+  selector: 'bubble-chart',
   template: `<canvas width="400" height="250"></canvas>`
 })
 
-export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
+export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
   @Input() xLabels: string[];
   @Input() datas: Array<{data: number[]}>;

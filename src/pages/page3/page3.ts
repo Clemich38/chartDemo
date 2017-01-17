@@ -17,7 +17,7 @@ export class Page3 {
     this.labels = [];
 
     for (let i = 0; i < 6; i++) {
-      this.data.push(Math.floor(Math.random() * 30));
+      this.data.push(Math.floor(Math.random() * 20) + 2);
       this.labels.push("Serie " + i);
     }
 

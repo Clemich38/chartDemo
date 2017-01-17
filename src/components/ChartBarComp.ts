@@ -68,7 +68,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
     if (this.colors)
       this.colorTab = this.colors;
 
-    let line = this._constructLineChart(this.data);
+    let line = this._constructChart(this.data);
     line.data.datasets[0].data = this.data;
     line.data.datasets[0].backgroundColor = this.colorTab;
     line.data.datasets[0].borderColor = this.colorTab;
@@ -79,7 +79,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }
 
-  private _constructLineChart(datas: number[]) {
+  private _constructChart(datas: number[]) {
     let type = this.horizontal? 'horizontalBar' : 'bar';
     return {
       type: type,

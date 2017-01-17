@@ -67,7 +67,7 @@ export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
     if (this.colors)
       this.colorTab = this.colors;
 
-    let line = this._constructLineChart(this.data);
+    let line = this._constructChart(this.data);
     line.data.datasets[0].data = this.data;
     line.data.datasets[0].backgroundColor = this.colorTab;
     line.data.datasets[0].hoverBackgroundColor = this.colorTab;
@@ -77,7 +77,7 @@ export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }
 
-  private _constructLineChart(datas: number[]) {
+  private _constructChart(datas: number[]) {
     return {
       type: 'pie',
       data: {
@@ -88,25 +88,7 @@ export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
           hoverBackgroundColor: this.colorTab,
           hoverBorderColor: []
         }]
-      },
-      // options: {
-      //   scales: {
-      //     yAxes: [{
-      //       ticks: {
-      //         max: Math.max.apply(Math, datas) + 1,
-      //         min: Math.min.apply(Math, datas)
-      //       },
-      //       gridLines: {
-      //         display: true
-      //       }
-      //     }],
-      //     xAxes: [{
-      //       gridLines: {
-      //         display: false
-      //       }
-      //     }]
-      //   }
-      // }
+      }
     };
   }
 }
