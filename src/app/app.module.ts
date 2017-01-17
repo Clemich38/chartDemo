@@ -11,12 +11,14 @@ import { Page3 } from '../pages/page3/page3';
 import { Page4 } from '../pages/page4/page4';
 import { Page5 } from '../pages/page5/page5';
 import { Page6 } from '../pages/page6/page6';
+import { Page7 } from '../pages/page7/page7';
 
 import {ChartLineComp} from '../components/ChartLineComp';
 import {ChartPieComp} from '../components/ChartPieComp';
 import {ChartDoughnutComp} from '../components/ChartDoughnutComp';
 import {ChartBarComp} from '../components/ChartBarComp';
 import {ChartRadarComp} from '../components/ChartRadarComp';
+import {ChartBubbleComp} from '../components/ChartBubbleComp';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,13 @@ import {ChartRadarComp} from '../components/ChartRadarComp';
     Page4,
     Page5,
     Page6,
+    Page7,
     ChartLineComp,
     ChartPieComp,
     ChartDoughnutComp,
     ChartBarComp,
-    ChartRadarComp
+    ChartRadarComp,
+    ChartBubbleComp
   ],
   imports: [
     // ChartsModule,
@@ -45,7 +49,8 @@ import {ChartRadarComp} from '../components/ChartRadarComp';
     Page3,
     Page4,
     Page5,
-    Page6
+    Page6,
+    Page7
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

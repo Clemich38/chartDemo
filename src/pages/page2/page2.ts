@@ -16,7 +16,7 @@ export class Page2 {
     this.datas = [];
     this.xLabels = [];
 
-    for (let i = 0; i < 5; i++) 
+    for (let i = 0; i < 3; i++) 
     {
       this.data = [];
       this.xLabels = [];
@@ -27,7 +27,5 @@ export class Page2 {
       }
       this.datas.push({data: this.data});
     }
-
   }
-
 }

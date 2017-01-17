@@ -8,6 +8,7 @@ import { Page3 } from '../pages/page3/page3';
 import { Page4 } from '../pages/page4/page4';
 import { Page5 } from '../pages/page5/page5';
 import { Page6 } from '../pages/page6/page6';
+import { Page7 } from '../pages/page7/page7';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class MyApp {
       { title: 'Pie Chart', component: Page3 },
       { title: 'Doughnut Chart', component: Page4 },
       { title: 'Bar Chart', component: Page5 },
-      { title: 'Radar Chart', component: Page6 }
+      { title: 'Radar Chart', component: Page6 },
+      { title: 'Bubble Chart', component: Page7 }
     ];
 
   }

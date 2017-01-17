@@ -71,7 +71,8 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
       line.data.datasets.push({label: this.title,
                                data: this.datas[i].data,
                                borderColor: this.colorTab[i],
-                               backgroundColor: this.colorTab[i] + "20",
+                               backgroundColor: this.colorTab[i],
+                               hoverBackgroundColor: this.colorTab[i],
                                fill: true
                               });
     }
@@ -82,29 +83,32 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
   private _constructChart(datas: number[]) {
     return {
-      type: 'radar',
+      type: 'bubble',
       data: {
         labels: [],
         datasets: []
       },
       options: {
-        scales: [{
-          ticks: {
-            beginAtZero: true
-          },
+        scales: {
           yAxes: [{
-            display: false,
+            ticks: {
+              // max: Math.max.apply(Math, datas),
+              min: 0
+            },
             gridLines: {
-              display: false
+              display: true
             }
           }],
           xAxes: [{
-            display: false,
+            ticks: {
+              // max: Math.max.apply(Math, datas),
+              min: 0
+            },
             gridLines: {
               display: false
             }
           }]
-        }]
+        }
       }
     };
   }
