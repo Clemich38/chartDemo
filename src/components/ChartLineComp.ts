@@ -8,7 +8,7 @@ declare var Chart: any;
   template: `<canvas width="400" height="250"></canvas>`
 })
 
-export class ChartComp implements OnChanges, OnInit, OnDestroy {
+export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
 
   @Input() xLabels: string[];
   @Input() datas: Array<{data: number[]}>;
@@ -71,8 +71,8 @@ export class ChartComp implements OnChanges, OnInit, OnDestroy {
       line.data.datasets.push({label: this.title,
                                data: this.datas[i].data,
                                borderColor: this.colorTab[i],
-                               backgroundColor: this.colorTab[i],
-                               fill: false
+                               backgroundColor: this.colorTab[i] + "20",
+                               fill: true
                               });
     }
     line.data.labels = this.xLabels;
