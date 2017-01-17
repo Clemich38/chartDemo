@@ -88,7 +88,10 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
         datasets: []
       },
       options: {
-        scales: {
+        scales: [{
+          ticks: {
+            beginAtZero: true
+          },
           yAxes: [{
             display: false,
             gridLines: {
@@ -101,7 +104,7 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
               display: false
             }
           }]
-        }
+        }]
       }
     };
   }
