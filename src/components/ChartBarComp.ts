@@ -10,22 +10,27 @@ declare var Chart: any;
 
 export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() labels: string[];
-  @Input() data: number[];
+  @Input() datas: Array<{data: number[]}>;
+  @Input() dataLabels: string[];
+  @Input() xLabels: string[];
   @Input() colors: string[];
   @Input() horizontal: boolean;
+  @Input() yMin: number;
+  @Input() yMax: number;
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
-  private colorTab: string[];
+  private m_colors: string[];
+  private m_yMin: number;
+  private m_yMax: number;
 
   public constructor(el: ElementRef) {
     this.el = el;
 
     // Default colors
-    this.colorTab = [
+    this.m_colors = [
               "#F44336",
               "#3F51B5",
               "#4CAF50",
@@ -50,7 +55,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.data && this.labels) {
+    if (this.datas && this.dataLabels) {
       this._create();
     }
   }
@@ -66,34 +71,61 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
+    // Custom color
     if (this.colors)
-      this.colorTab = this.colors;
+      this.m_colors = this.colors;
+    if (this.yMin)
+      this.m_yMin = this.yMin;
+    if (this.yMax)
+      this.m_yMax = this.yMax;
 
-    let line = this._constructChart(this.data);
-    line.data.datasets[0].data = this.data;
-    line.data.datasets[0].backgroundColor = this.colorTab;
-    line.data.datasets[0].borderColor = this.colorTab;
-    line.data.datasets[0].hoverBackgroundColor = this.colorTab;
-    line.data.datasets[0].hoverBorderColor = this.colorTab;
-    line.data.labels = this.labels;
+    // let line = this._constructChart();
+    // line.data.datasets[0].data = this.datas;
+    // line.data.datasets[0].backgroundColor = this.m_colors;
+    // line.data.datasets[0].borderColor = this.m_colors;
+    // line.data.datasets[0].hoverBackgroundColor = this.m_colors;
+    // line.data.datasets[0].hoverBorderColor = this.m_colors;
+    // line.data.labels = this.dataLabels;
+
+    // this.chart = new Chart(this.el.nativeElement.children[0], line)
+////////////////////
+
+    let line = this._constructChart();
+
+    for(let i in this.datas)
+    {
+      line.data.datasets.push({label: this.dataLabels[i],
+                               data: this.datas[i].data,
+                               borderColor: this.m_colors[i],
+                               backgroundColor: this.m_colors[i],// + "20",
+                               hoverBackgroundColor: this.m_colors[i],
+                               hoverBorderColor: this.m_colors[i],
+                               fill: true
+                              });
+    }
+    line.data.labels = this.xLabels;
 
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }
 
-  private _constructChart(datas: number[]) {
+  private _constructChart() {
     let type = this.horizontal? 'horizontalBar' : 'bar';
     return {
       type: type,
       data: {
         labels: [],
-        datasets: [{
-          data: [],
-          backgroundColor: [],
-          borderColor: [],
-          hoverBackgroundColor: [],
-          hoverBorderColor: []
-        }]
+        datasets: []
       },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              suggestedMax: this.m_yMax,
+              suggestedMin: this.m_yMin
+            }
+          }]
+        }
+      }
     };
   }
 }

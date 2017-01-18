@@ -25,7 +25,7 @@ export class Page2 {
       for (let j = 0; j < 10; j++)
       {
         this.data.push(Math.floor(Math.random() * 20));
-        this.xLabels.push(j + '');
+        this.xLabels.push("label" + j);
       }
       this.datas.push({data: this.data});
       this.dataLabels.push("dataset " + i);

@@ -11,7 +11,17 @@
 
 <ion-content padding>
 
-  <bar-chart class="chart-div" [data] = "data" [labels] = "labels" ></bar-chart>
-  <bar-chart class="chart-div" [colors] = "colors" [data] = "data" [labels] = "labels" horizontal="horizontal"></bar-chart>
+  <bar-chart class="chart-div" [dataLabels]="dataLabels"
+                               [datas]="datas" 
+                               [xLabels]="xLabels"
+                               yMax=40
+                               yMin=0>
+  </bar-chart>
+  <bar-chart class="chart-div" [colors]="colors" 
+                               [dataLabels]="dataLabels"
+                               [datas]="datas" 
+                               [xLabels]="xLabels"
+                               horizontal="horizontal">
+  </bar-chart>
 
 </ion-content>
