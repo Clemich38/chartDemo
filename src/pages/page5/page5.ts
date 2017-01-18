@@ -32,7 +32,12 @@ export class Page5 {
       this.dataLabels.push("dataset " + i);
     }
 
-    this.colors = ["#3F51B5",
-                   "#00BCD4"];
+    this.colors = [
+              "233, 196, 106",
+              "231, 111, 81",
+              "38, 70, 83",
+              "42, 157, 143",
+              "244, 162, 97"
+          ];
   }
 }

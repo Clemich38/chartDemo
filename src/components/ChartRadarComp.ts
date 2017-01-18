@@ -25,22 +25,11 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
     this.el = el;
 
     this.m_colors = [
-              "#F44336",
-              "#3F51B5",
-              "#4CAF50",
-              "#FF9800",
-              "#009688",
-              "#795548",
-              "#FFEB3B",
-              "#03A9F4",
-              "#E91E63",
-              "#607D8B",
-              "#9C27B0",
-              "#CDDC39",
-              "#FFC107",
-              "#00BCD4",
-              "#FF5722",
-              "#9E9E9E"
+              "42, 157, 143",
+              "233, 196, 106",
+              "244, 162, 97",
+              "231, 111, 81",
+              "38, 70, 83"
           ];
   }
 
@@ -75,8 +64,8 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
     {
       line.data.datasets.push({label: this.dataLabels[i],
                                data: this.datas[i].data,
-                               borderColor: this.m_colors[i],
-                               backgroundColor: this.m_colors[i] + "20",
+                               borderColor: "rgba(" + this.m_colors[i] + ",1)",
+                               backgroundColor: "rgba(" + this.m_colors[i] + ",0.2)",
                                fill: true
                               });
     }

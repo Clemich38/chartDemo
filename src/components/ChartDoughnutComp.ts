@@ -25,22 +25,11 @@ export class ChartDoughnutComp implements OnChanges, OnInit, OnDestroy {
     this.el = el;
 
     this.m_colors = [
-              "#F44336",
-              "#3F51B5",
-              "#4CAF50",
-              "#FF9800",
-              "#009688",
-              "#795548",
-              "#FFEB3B",
-              "#03A9F4",
-              "#E91E63",
-              "#607D8B",
-              "#9C27B0",
-              "#CDDC39",
-              "#FFC107",
-              "#00BCD4",
-              "#FF5722",
-              "#9E9E9E"
+              "42, 157, 143",
+              "233, 196, 106",
+              "244, 162, 97",
+              "231, 111, 81",
+              "38, 70, 83"
           ];
   }
 
@@ -68,12 +57,15 @@ export class ChartDoughnutComp implements OnChanges, OnInit, OnDestroy {
     if (this.colors)
       this.m_colors = this.colors;
 
+    for(let i in this.m_colors)
+      this.m_colors[i] = "rgba(" + this.m_colors[i] + ",1)";
+
     let line = this._constructChart();
 
     line.data.datasets.push({data: this.datas,
                              backgroundColor: this.m_colors,
                              hoverBackgroundColor: this.m_colors,
-                             hoverBorderColor: this.m_colors
+                             hoverBorderColor: this.m_colors,
     });
 
     line.data.labels = this.dataLabels;

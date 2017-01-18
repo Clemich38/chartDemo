@@ -16,18 +16,17 @@ export class Page3 {
     this.datas = [];
     this.dataLabels = [];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
       this.datas.push(Math.floor(Math.random() * 20) + 2);
       this.dataLabels.push("label " + i);
     }
 
     this.colors = [
-              "#C2185B",
-              "#E91E63",
-              "#F8BBD0",
-              "#FF9800",
-              "#009688",
-              "#795548"
+              "38, 70, 83",
+              "42, 157, 143",
+              "233, 196, 106",
+              "244, 162, 97",
+              "231, 111, 81"
           ];
 
   }
