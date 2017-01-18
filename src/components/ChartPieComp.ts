@@ -10,20 +10,20 @@ declare var Chart: any;
 
 export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() labels: string[];
-  @Input() data: number[];
+  @Input() datas: number[];
+  @Input() dataLabels: string[];
   @Input() colors: string[];
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
-  private colorTab: string[];
+  private m_colors: string[];
 
   public constructor(el: ElementRef) {
     this.el = el;
 
-    this.colorTab = [
+    this.m_colors = [
               "#F44336",
               "#3F51B5",
               "#4CAF50",
@@ -48,7 +48,7 @@ export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.data && this.labels) {
+    if (this.datas && this.dataLabels) {
       this._create();
     }
   }
@@ -65,29 +65,27 @@ export class ChartPieComp implements OnChanges, OnInit, OnDestroy {
     this.ngOnDestroy();
 
     if (this.colors)
-      this.colorTab = this.colors;
+      this.m_colors = this.colors;
 
-    let line = this._constructChart(this.data);
-    line.data.datasets[0].data = this.data;
-    line.data.datasets[0].backgroundColor = this.colorTab;
-    line.data.datasets[0].hoverBackgroundColor = this.colorTab;
-    line.data.datasets[0].hoverBorderColor = this.colorTab;
-    line.data.labels = this.labels;
+    let line = this._constructChart();
+
+    line.data.datasets.push({data: this.datas,
+                             backgroundColor: this.m_colors,
+                             hoverBackgroundColor: this.m_colors,
+                             hoverBorderColor: this.m_colors
+    });
+
+    line.data.labels = this.dataLabels;
 
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }
 
-  private _constructChart(datas: number[]) {
+  private _constructChart() {
     return {
       type: 'pie',
       data: {
         labels: [],
-        datasets: [{
-          data: [],
-          backgroundColor: [],
-          hoverBackgroundColor: this.colorTab,
-          hoverBorderColor: []
-        }]
+        datasets: []
       }
     };
   }

@@ -89,7 +89,7 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
     if (this.xMax)
       this.m_xMax = this.xMax;
 
-    let line = this._constructChart(this.datas[0].data);
+    let line = this._constructChart();
 
     for(let i in this.datas)
     {
@@ -105,7 +105,7 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }       
 
-  private _constructChart(datas: number[]) {
+  private _constructChart() {
     return {
       type: 'bubble',
       data: {
