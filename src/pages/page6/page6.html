@@ -9,6 +9,9 @@
 
 <ion-content padding>
   
-  <radar-chart class="chart-div" title = "Title" [datas] = "datas" [xLabels] = "xLabels"></radar-chart>
+  <radar-chart class="chart-div" [datas]="datas"
+                                 [dataLabels]="dataLabels"
+                                 [xLabels] = "xLabels">
+  </radar-chart>
 
 </ion-content>

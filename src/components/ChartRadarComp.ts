@@ -10,20 +10,21 @@ declare var Chart: any;
 
 export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() xLabels: string[];
   @Input() datas: Array<{data: number[]}>;
-  @Input() title: string;
+  @Input() dataLabels: string[];
+  @Input() xLabels: string[];
+  @Input() colors: string[];
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
-  private colorTab: string[];
+  private m_colors: string[];
 
   public constructor(el: ElementRef) {
     this.el = el;
 
-    this.colorTab = [
+    this.m_colors = [
               "#F44336",
               "#3F51B5",
               "#4CAF50",
@@ -64,14 +65,18 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
+    // Custom color
+    if (this.colors)
+      this.m_colors = this.colors;
+
     let line = this._constructChart(this.datas[0].data);
 
     for(let i in this.datas)
     {
-      line.data.datasets.push({label: this.title,
+      line.data.datasets.push({label: this.dataLabels[i],
                                data: this.datas[i].data,
-                               borderColor: this.colorTab[i],
-                               backgroundColor: this.colorTab[i] + "20",
+                               borderColor: this.m_colors[i],
+                               backgroundColor: this.m_colors[i] + "20",
                                fill: true
                               });
     }
