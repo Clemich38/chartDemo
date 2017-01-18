@@ -79,17 +79,6 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
     if (this.yMax)
       this.m_yMax = this.yMax;
 
-    // let line = this._constructChart();
-    // line.data.datasets[0].data = this.datas;
-    // line.data.datasets[0].backgroundColor = this.m_colors;
-    // line.data.datasets[0].borderColor = this.m_colors;
-    // line.data.datasets[0].hoverBackgroundColor = this.m_colors;
-    // line.data.datasets[0].hoverBorderColor = this.m_colors;
-    // line.data.labels = this.dataLabels;
-
-    // this.chart = new Chart(this.el.nativeElement.children[0], line)
-////////////////////
-
     let line = this._constructChart();
 
     for(let i in this.datas)
