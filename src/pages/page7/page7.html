@@ -9,6 +9,12 @@
 
 <ion-content padding>
   
-  <bubble-chart class="chart-div" yMax=25 yMin=-5 xMax=12 xMin=-2 [title]="titles" [datas]="datas"></bubble-chart>
+  <bubble-chart class="chart-div" [dataLabels]="dataLabels"
+                                  [datas]="datas"
+                                  yMax=25
+                                  yMin=-5
+                                  xMax=12
+                                  xMin=-2>
+  </bubble-chart>
 
 </ion-content>

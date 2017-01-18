@@ -11,12 +11,12 @@ export class Page7 {
 
   // Array of datasets to pass to the bubble chart component
   public datas: Array<{data: Array<{x: number, y: number, r: number}>}>;
-  public titles: string[];
+  public dataLabels: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.datas = [];
-    this.titles = [];
+    this.dataLabels = [];
 
     for (let i = 0; i < 2; i++) 
     {
@@ -28,7 +28,7 @@ export class Page7 {
                         r: Math.floor(Math.random() * 10) + 3});
       }
       this.datas.push({data: this.data});
-      this.titles.push("dataset " + i);
+      this.dataLabels.push("dataset " + i);
     }
 
   }

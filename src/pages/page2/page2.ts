@@ -9,11 +9,13 @@ export class Page2 {
 
   public data: number[];
   public datas: Array<{data: number[]}>;
+  public dataLabels: string[];
   public xLabels: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.datas = [];
+    this.dataLabels = [];
     this.xLabels = [];
 
     for (let i = 0; i < 3; i++) 
@@ -26,6 +28,7 @@ export class Page2 {
         this.xLabels.push(j + '');
       }
       this.datas.push({data: this.data});
+      this.dataLabels.push("dataset " + i);
     }
   }
 }

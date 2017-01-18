@@ -9,6 +9,11 @@
 
 <ion-content padding>
   
-  <line-chart class="chart-div" title = "Title" [datas] = "datas" [xLabels] = "xLabels"></line-chart>
+  <line-chart class="chart-div" [dataLabels]="dataLabels"
+                                [datas]="datas" 
+                                [xLabels]="xLabels"
+                                yMax=25
+                                yMin=0>
+  </line-chart>
 
 </ion-content>

@@ -10,20 +10,25 @@ declare var Chart: any;
 
 export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() xLabels: string[];
   @Input() datas: Array<{data: number[]}>;
-  @Input() title: string;
+  @Input() dataLabels: string[];
+  @Input() xLabels: string[];
+  @Input() colors: string[];
+  @Input() yMin: number;
+  @Input() yMax: number;
 
   private el: ElementRef;
   private ctx: any;
   private chart: any;
 
-  private colorTab: string[];
+  private m_colors: string[];
+  private m_yMin: number;
+  private m_yMax: number;
 
   public constructor(el: ElementRef) {
     this.el = el;
 
-    this.colorTab = [
+    this.m_colors = [
               "#F44336",
               "#3F51B5",
               "#4CAF50",
@@ -64,14 +69,22 @@ export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
 
     this.ngOnDestroy();
 
+    // Custom color
+    if (this.colors)
+      this.m_colors = this.colors;
+    if (this.yMin)
+      this.m_yMin = this.yMin;
+    if (this.yMax)
+      this.m_yMax = this.yMax;
+
     let line = this._constructChart(this.datas[0].data);
 
     for(let i in this.datas)
     {
-      line.data.datasets.push({label: this.title,
+      line.data.datasets.push({label: this.dataLabels[i],
                                data: this.datas[i].data,
-                               borderColor: this.colorTab[i],
-                               backgroundColor: this.colorTab[i] + "20",
+                               borderColor: this.m_colors[i],
+                               backgroundColor: this.m_colors[i] + "20",
                                fill: true
                               });
     }
@@ -91,8 +104,8 @@ export class ChartLineComp implements OnChanges, OnInit, OnDestroy {
         scales: {
           yAxes: [{
             ticks: {
-              // max: Math.max.apply(Math, datas),
-              min: 0
+              suggestedMax: this.m_yMax,
+              suggestedMin: this.m_yMin
             },
             gridLines: {
               display: true

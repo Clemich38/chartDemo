@@ -11,7 +11,7 @@ declare var Chart: any;
 export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
   @Input() datas: Array<{data: number[]}>;
-  @Input() title: string[];
+  @Input() dataLabels: string[];
   @Input() colors: string[];
   @Input() yMin: number;
   @Input() yMax: number;
@@ -61,7 +61,7 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnChanges() {
-    if (this.datas && this.title) {
+    if (this.datas && this.dataLabels) {
       this._create();
     }
   }
@@ -93,7 +93,7 @@ export class ChartBubbleComp implements OnChanges, OnInit, OnDestroy {
 
     for(let i in this.datas)
     {
-      line.data.datasets.push({label: this.title[i],
+      line.data.datasets.push({label: this.dataLabels[i],
                                data: this.datas[i].data,
                                borderColor: this.m_colors[i],
                                backgroundColor: this.m_colors[i],
