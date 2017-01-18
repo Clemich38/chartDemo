@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class Page5 {
 
   public data: number[];
-  public datas: Array<{data: number[]}>;
+  public datas: Array<number[]>;
   public dataLabels: string[];
   public xLabels: string[];
   public colors: string[];
@@ -28,7 +28,7 @@ export class Page5 {
         this.data.push(Math.floor(Math.random() * 30) + 2);
         this.xLabels.push("label" + j);
       }
-      this.datas.push({data: this.data});
+      this.datas.push(this.data);
       this.dataLabels.push("dataset " + i);
     }
 

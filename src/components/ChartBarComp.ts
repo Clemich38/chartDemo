@@ -10,7 +10,7 @@ declare var Chart: any;
 
 export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() datas: Array<{data: number[]}>;
+  @Input() datas: Array<number[]>;
   @Input() dataLabels: string[];
   @Input() xLabels: string[];
   @Input() colors: string[];
@@ -73,7 +73,7 @@ export class ChartBarComp implements OnChanges, OnInit, OnDestroy {
     for(let i in this.datas)
     {
       line.data.datasets.push({label: this.dataLabels[i],
-                               data: this.datas[i].data,
+                               data: this.datas[i],
                                borderColor: "rgba(" + this.m_colors[i] + ",1)",
                                backgroundColor: "rgba(" + this.m_colors[i] + ",1)",
                                hoverBackgroundColor: "rgba(" + this.m_colors[i] + ",1)",

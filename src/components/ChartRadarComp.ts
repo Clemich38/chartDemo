@@ -10,7 +10,7 @@ declare var Chart: any;
 
 export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
 
-  @Input() datas: Array<{data: number[]}>;
+  @Input() datas: Array<number[]>;
   @Input() dataLabels: string[];
   @Input() xLabels: string[];
   @Input() colors: string[];
@@ -58,12 +58,12 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
     if (this.colors)
       this.m_colors = this.colors;
 
-    let line = this._constructChart(this.datas[0].data);
+    let line = this._constructChart();
 
     for(let i in this.datas)
     {
       line.data.datasets.push({label: this.dataLabels[i],
-                               data: this.datas[i].data,
+                               data: this.datas[i],
                                borderColor: "rgba(" + this.m_colors[i] + ",1)",
                                backgroundColor: "rgba(" + this.m_colors[i] + ",0.2)",
                                fill: true
@@ -74,7 +74,7 @@ export class ChartRadarComp implements OnChanges, OnInit, OnDestroy {
     this.chart = new Chart(this.el.nativeElement.children[0], line)
   }       
 
-  private _constructChart(datas: number[]) {
+  private _constructChart() {
     return {
       type: 'radar',
       data: {

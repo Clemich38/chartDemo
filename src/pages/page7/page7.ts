@@ -10,7 +10,7 @@ export class Page7 {
   public data: Array<{x: number, y: number, r: number}>;
 
   // Array of datasets to pass to the bubble chart component
-  public datas: Array<{data: Array<{x: number, y: number, r: number}>}>;
+  public datas: Array<Array<{x: number, y: number, r: number}>>;
   public dataLabels: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -27,7 +27,7 @@ export class Page7 {
                         y: Math.floor(Math.random() * 20) + 1,
                         r: Math.floor(Math.random() * 10) + 3});
       }
-      this.datas.push({data: this.data});
+      this.datas.push(this.data);
       this.dataLabels.push("dataset " + i);
     }
 

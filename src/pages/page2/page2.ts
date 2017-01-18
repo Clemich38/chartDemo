@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class Page2 {
 
   public data: number[];
-  public datas: Array<{data: number[]}>;
+  public datas: Array<number[]>;
   public dataLabels: string[];
   public xLabels: string[];
 
@@ -27,7 +27,7 @@ export class Page2 {
         this.data.push(Math.floor(Math.random() * 20));
         this.xLabels.push("label" + j);
       }
-      this.datas.push({data: this.data});
+      this.datas.push(this.data);
       this.dataLabels.push("dataset " + i);
     }
   }
