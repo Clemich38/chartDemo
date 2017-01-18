@@ -7,18 +7,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Page4 {
 
-  public data: number[];
-  public labels: string[];
+  public datas: number[];
+  public dataLabels: string[];
   public colors: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    this.data = [];
-    this.labels = [];
+    this.datas = [];
+    this.dataLabels = [];
 
     for (let i = 0; i < 4; i++) {
-      this.data.push(Math.floor(Math.random() * 20) + 2);
-      this.labels.push("Serie " + i);
+      this.datas.push(Math.floor(Math.random() * 20) + 2);
+      this.dataLabels.push("label " + i);
     }
 
     this.colors = [
@@ -27,9 +27,5 @@ export class Page4 {
               "#8BC34A",
               "#FFC107"
           ];}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Page4');
-  }
 
 }
